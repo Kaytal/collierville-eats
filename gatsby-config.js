@@ -7,15 +7,13 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: `Delog`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://delog-w3layouts.netlify.com/`,
+    title: `Collierville COVID-19 Restaurant Info`,
+    description: `A list of restaurants that are open for Carry-Out or Delivery in Collierville during the 2019 Coronavirus Pandemic`,
+    siteUrl: `https://some-netlify-url.com`,
     home: {
-      title: `Hi! I'm Delog`,
-      description: `I have been specifically designed to become a digital home for designers and developers, help them build amazing professional looking websites with ease. You don't have to worry about nitty gritty of web hosting services to run a blog and yet take full advantage of CMS to manage content :)`,
-    },
-    /* W3Layouts domain verification key for contact forms https://my.w3layouts.com/Forms/ */
-    w3l_dom_key: `5e609f7a2d23fCF_Domain_verify` 
+      title: `Collierville COVID-19 Restaurant Guide`,
+      description: `Below is a list of Restaurants open for Carry-Out or Delivery in Collierville during the 2019 Coronavirus Pandemic`,
+    }
   },
   plugins: [
     {

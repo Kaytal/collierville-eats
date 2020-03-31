@@ -1,9 +1,19 @@
-import React from "react"
+import React, { useState } from "react"
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
 import PostLink from "../components/post-link"
 import HeroHeader from "../components/heroHeader"
+
+const Posts = ({edges, category}) => {
+  let posts
+  if(category === 'All' || category === null) {
+    posts = edges
+  } else {
+    posts = edges.filter(edge => edge.node.frontmatter.category === category)
+  }
+  return posts.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+}
 
 const IndexPage = ({
   data: {
@@ -12,21 +22,24 @@ const IndexPage = ({
   },
 }) => {
 
-  const Posts = edges
-    .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
-    .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   return (
     <Layout>
       <Helmet>
         <title>{site.siteMetadata.title}</title>
         <meta name="description" content={site.siteMetadata.description} />
-        {!site.siteMetadata.w3l_dom_key ? null : <meta name="w3l-domain-verification" content={site.siteMetadata.w3l_dom_key} />}
       </Helmet>
       <HeroHeader/>
-      <h2>Blog Posts &darr;</h2>
+      <h2>Restaurants &darr;</h2>
+      <div className="button-row">
+        <button onClick={() => setSelectedCategory('Local')} className="button -primary">Local</button>
+        <button onClick={() => setSelectedCategory('Regional Chain')} className="button -primary">Regional Chain</button>
+        <button onClick={() => setSelectedCategory('National Chain')} className="button -primary">National Chain</button>
+        <button onClick={() => setSelectedCategory('All')} className="button -primary">All</button>
+      </div>
       <div className="grids">
-        {Posts}
+        <Posts edges={edges} category={selectedCategory} />
       </div>
     </Layout>
   )
@@ -39,7 +52,6 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
-        w3l_dom_key
       }
     }
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
@@ -49,9 +61,9 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 250)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            path
             title
-            thumbnail
+            tags
+            category
           }
         }
       }

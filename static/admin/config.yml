@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: W3Layouts/gatsby-starter-delog
+  repo: Kaytal/collierville-eats
 media_folder: static/assets
 public_folder: /assets
 collections:
@@ -16,18 +16,11 @@ collections:
           widget: hidden,
           default: BlogPost,
         }
-      - { name: path, label: Path }
-      - { name: date, label: Date, widget: datetime }
-      - { name: title, label: Title }
-      - label: Featured Image
-        name: thumbnail
-        widget: image
-        hint: "Image size 1280x800 works best :)"
-        required: false
-        media_library:
-          config:
-            multiple: false
-      - { name: body, label: Body, widget: markdown }
+      - { name: path,     label: Path }
+      - { name: date,     label: Date, widget: datetime }
+      - { name: tags,     label: Tags }
+      - { name: category, label: category }
+      - { name: title,    label: Title }
       - label: Meta Description
         name: metaDescription
         widget: text
