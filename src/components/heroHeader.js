@@ -16,7 +16,7 @@ export default () => (
     `}
     render={data => (
       <header className="hero-header">
-        <img className="hero-img" alt="Collierville, TN" src={'/ColliervilleTN.jpg'} />
+        <img className="hero-img" alt="Collierville, TN" src={'/assets/ColliervilleTN.jpg'} />
         <div className="headline">{data.site.siteMetadata.home.title}</div>
         <div className="primary-content">
           <p>{data.site.siteMetadata.home.description}</p>

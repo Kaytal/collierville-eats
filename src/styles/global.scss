@@ -34,7 +34,6 @@ a {
   margin: 0 auto;
 }
 .hero-header {
-  padding: 0 2rem;
   background-size: cover;
   background-position: top left;
   color: $color-deep-koamaru-blue;
@@ -57,7 +56,7 @@ a {
 }
 
 .button {
-  padding: 1rem;
+  padding: .5rem 1rem;
   display: inline-block;
   background: $color-japanese-violet;
   border: none;
@@ -103,8 +102,7 @@ a {
 .card {
   display: grid;
   background:white;
-  border-radius: 9px;
-  border: 1px solid #eee;
+  border-radius: 3px;
   box-shadow: 0 0 30px #d5d5d5;
   overflow: hidden;
   text-align: center;
@@ -144,6 +142,21 @@ a {
   }
 }
 /* Portrait and Landscape */
+@media only screen 
+and (max-width: 768px) {
+  .button-row {
+    justify-content: space-evenly;
+    .button {
+      margin: 0 0 1rem 0;
+      font-size: .75rem;
+    }
+  }
+  .headline {
+    line-height: 1;
+    padding: 1rem 0;
+  }
+}
+
 @media only screen 
 and (min-width: 768px) {
 .grids {
