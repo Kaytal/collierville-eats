@@ -1,29 +1,14 @@
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import Navigation from "../components/navigation"
+import HeroHeader from "./heroHeader"
 import 'prismjs/themes/prism-okaidia.css';
 
 export default ({ children }) => {
-  const data = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
   return (
     <div className="site-wrapper">
-      <header className="site-header">
-        <div className="site-title">
-          <Link to="/">{data.site.siteMetadata.title}</Link>
-        </div>
-        <Navigation />
-      </header>
-      {children}
+      <HeroHeader/>
+      <div className="content-wrapper">
+        {children}
+      </div>
       <footer className="site-footer">
         <p>&copy; 2020 Bearded Robots &bull; Crafted with <span role="img" aria-label="love">❤️</span> using <a href="https://gatsbyjs.org">GatsbyJS</a></p>
       </footer>

@@ -1,21 +1,22 @@
 import React from "react"
-import { Link } from "gatsby"
 
 const Post = ({ post }) => (
   <article class="card ">
-    <Link to={post.frontmatter.path}>
-      {!!post.frontmatter.thumbnail && (
-        <img src={post.frontmatter.thumbnail} alt={post.frontmatter.title + "- Featured Shot"} />
-      )}
-    </Link>
     <header>
       <h2 className="post-title">
-        <Link to={post.frontmatter.path} className="post-link">
-          {post.frontmatter.title}
-        </Link>
+        {post.frontmatter.title}
+        <br />
+        <small>{post.frontmatter.phone}</small>
       </h2>
-      <div class="post-meta">{post.frontmatter.date}</div>
+      <div class="post-meta">Food: {post.frontmatter.tags}</div>
+      <div class="post-meta">Services: {post.frontmatter.services}</div>
+      {post.frontmatter.website &&
+        <div style={{textAlign: "center"}}>
+          <a href={post.frontmatter.website} rel="noopener noreferrer" target="_blank">Website</a>
+        </div>
+      }
+      <button className="button -primary button--small">{post.frontmatter.category}</button>
     </header>
   </article>
 )
-export default PostLink
+export default Post

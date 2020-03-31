@@ -2,17 +2,16 @@ import React, { useState } from "react"
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
-import PostLink from "../components/post-link"
-import HeroHeader from "../components/heroHeader"
+import Post from "../components/post"
 
 const Posts = ({edges, category}) => {
   let posts
   if(category === 'All' || category === null) {
-    posts = edges
+    posts = edges.filter(edge => edge.node.frontmatter.title)
   } else {
-    posts = edges.filter(edge => edge.node.frontmatter.category === category)
+    posts = edges.filter(edge => edge.node.frontmatter.title && edge.node.frontmatter.category === category)
   }
-  return posts.map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+  return posts.map(edge => <Post key={edge.node.id} post={edge.node} />)
 }
 
 const IndexPage = ({
@@ -23,6 +22,9 @@ const IndexPage = ({
 }) => {
 
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const buttons = ['All', 'Local', 'Regional Chain', 'National Chain'].map( key => {
+    return <button onClick={() => setSelectedCategory(key)} className={`button -primary ${key === selectedCategory ? 'active' : ''}`}>{key}</button>
+  })
 
   return (
     <Layout>
@@ -30,14 +32,10 @@ const IndexPage = ({
         <title>{site.siteMetadata.title}</title>
         <meta name="description" content={site.siteMetadata.description} />
       </Helmet>
-      <HeroHeader/>
-      <h2>Restaurants &darr;</h2>
       <div className="button-row">
-        <button onClick={() => setSelectedCategory('Local')} className="button -primary">Local</button>
-        <button onClick={() => setSelectedCategory('Regional Chain')} className="button -primary">Regional Chain</button>
-        <button onClick={() => setSelectedCategory('National Chain')} className="button -primary">National Chain</button>
-        <button onClick={() => setSelectedCategory('All')} className="button -primary">All</button>
+        {buttons}
       </div>
+      <h2>Restaurants:</h2>
       <div className="grids">
         <Posts edges={edges} category={selectedCategory} />
       </div>
@@ -54,16 +52,17 @@ export const pageQuery = graphql`
         description
       }
     }
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMarkdownRemark(sort: { order: ASC, fields: [frontmatter___title] }) {
       edges {
         node {
           id
-          excerpt(pruneLength: 250)
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
             title
+            phone
             tags
             category
+            website
+            services
           }
         }
       }
