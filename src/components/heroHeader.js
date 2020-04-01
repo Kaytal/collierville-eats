@@ -20,6 +20,7 @@ export default () => (
         <div className="headline">{data.site.siteMetadata.home.title}</div>
         <div className="primary-content">
           <p>{data.site.siteMetadata.home.description}</p>
+          <p>The list is constantly being updated/changed. Please check back periodically.</p>
         </div>
       </header>
     )}
