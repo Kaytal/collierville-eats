@@ -8,11 +8,11 @@ module.exports = {
   /* Your site config here */
   siteMetadata: {
     title: `Collierville COVID-19 Restaurant Info`,
-    description: `A list of restaurants that are open for Carry-Out or Delivery in Collierville during the 2019 Coronavirus Pandemic`,
+    description: `A list of restaurants that are open for Carry-Out or Delivery in Collierville during the 2020 Coronavirus Pandemic`,
     siteUrl: `https://some-netlify-url.com`,
     home: {
       title: `Collierville COVID-19 Restaurant Guide`,
-      description: `Below is a list of Restaurants open for Carry-Out or Delivery in Collierville during the 2019 Coronavirus Pandemic`,
+      description: `Below is a list of Restaurants open for Carry-Out or Delivery in Collierville during the 2020 Coronavirus Pandemic`,
     }
   },
   plugins: [
