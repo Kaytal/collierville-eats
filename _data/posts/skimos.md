@@ -1,6 +1,6 @@
 ---
 template: Post
-title: SkiMo's
+title: SkiMo's (Cordova)
 tags: Pasta, Pizza, Sandwiches
 category: Local
 phone: 901-756-5055
